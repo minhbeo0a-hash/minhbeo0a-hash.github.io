@@ -3,298 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio · Nguyễn Đức Minh</title>
+    <title>Bùi Linh Giang — Portfolio Kỹ thuật số</title>
+    <!-- Font chữ Inter thanh lịch từ Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Thiết lập chung */
+        /* --- THIẾT LẬP CHUNG (RESET & VARIABLES) --- */
+        :root {
+            --bg-color: #FAF6F0; /* Màu nền kem pastel nhẹ */
+            --primary-color: #6B2D5C; /* Màu đỏ mận/tím sẫm làm điểm nhấn */
+            --text-dark: #2D2424; /* Màu chữ tối dịu mắt */
+            --text-muted: #6B5E5E; /* Màu chữ phụ */
+            --card-bg: #FFFFFF; /* Nền trắng cho các thẻ */
+            --shadow: 0 4px 20px rgba(107, 45, 92, 0.05); /* Đổ bóng nhẹ hồng */
+            --border-radius: 16px;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        html {
-            scroll-behavior: smooth;
-        }
+
         body {
-            background-color: #f9fbf9;
-            color: #2c3e50;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
             line-height: 1.6;
         }
+
         a {
             text-decoration: none;
             color: inherit;
+            transition: all 0.3s ease;
         }
 
-        /* Thanh điều hướng (Header) */
+        /* --- THANH ĐIỀU HƯỚNG (HEADER) --- */
         header {
-            background-color: #0c3b2e; /* Màu xanh lá đậm giống trang mẫu */
-            color: #ffffff;
             position: sticky;
             top: 0;
+            background-color: rgba(250, 246, 240, 0.9);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 15px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
         }
-        .logo {
-            font-weight: bold;
-            font-size: 1.2rem;
+
+        .logo-area {
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-        .logo span {
-            font-size: 0.8rem;
-            background-color: #6d9773;
-            padding: 2px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-        nav ul li a {
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-        nav ul li a:hover {
-            color: #ffba08;
-        }
-        nav ul li a.active-btn {
-            background-color: #ffba08;
-            color: #0c3b2e;
+            gap: 12px;
         }
 
-        /* Các khu vực nội dung (Sections) */
-        section {
-            padding: 80px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .section-title {
-            font-size: 2rem;
-            color: #0c3b2e;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #6d9773;
-            padding-bottom: 10px;
-        }
-
-        /* Trang chủ (Hero Section) */
-        #home {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #0c3b2e 0%, #1e5e4a 100%);
-            color: white;
-            max-width: 100%;
-        }
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-        .hero-content p {
-            font-size: 1.2rem;
-            color: #ffba08;
-            margin-bottom: 25px;
-        }
-
-        /* Giới thiệu */
-        .intro-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-            align-items: center;
-        }
-        .avatar-box {
-            text-align: center;
-        }
-        .avatar-box img {
-            width: 200px;
-            height: 200px;
+        .logo-circle {
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #6d9773;
-        }
-
-        /* Dự án (Timeline/Cards) */
-        .project-list {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .project-card {
-            background: white;
-            border-left: 5px solid #0c3b2e;
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-        }
-        .project-card:hover {
-            transform: translateX(5px);
-        }
-        .project-card h3 {
-            color: #0c3b2e;
-            margin-bottom: 8px;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
         }
 
-        /* Tổng kết & Kỹ năng */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+        .logo-text h1 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-color);
         }
-        .skill-item {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
+
+        .logo-text p {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        nav a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        nav a.active {
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .btn-exercise {
+            background-color: #EED6D6; /* Màu hồng pastel đậm */
+            color: var(--primary-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .btn-exercise:hover {
+            opacity: 0.9;
+        }
+
+        /* --- BỐ CỤC CHÍNH --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-tag {
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 3px solid #ffba08;
-        }
-        .skill-icon {
-            font-size: 2rem;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-color);
             margin-bottom: 10px;
         }
 
-        /* Chân trang (Footer) */
-        footer {
-            background-color: #0c3b2e;
-            color: #a8c3b1;
+        .section-title {
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 50px;
-            font-size: 0.9rem;
-        }
-        footer p {
-            margin-bottom: 8px;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--text-dark);
         }
 
-        /* Responsive */
+        /* --- PHẦN VỀ TÔI (ABOUT) --- */
+        .intro-box {
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--primary-color);
+            padding: 35px;
+            border-radius: 4px var(--border-radius) var(--border-radius) 4px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .intro-box p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-box strong {
+            color: var(--primary-color);
+        }
+
+        /* --- LƯỚI THÔNG TIN SƠ LƯỢC (GRID CARDS) --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+
+        .info-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-wrapper {
+            width: 45px;
+            height: 45px;
+            background-color: var(--bg-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Tùy chỉnh màu icon theo vòng tròn pastel */
+        .info-card:nth-child(1) .icon-wrapper { background-color: #E8F0FE; }
+        .info-card:nth-child(2) .icon-wrapper { background-color: #FCE8E6; }
+        .info-card:nth-child(3) .icon-wrapper { background-color: #E6F4EA; }
+
+        .info-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .info-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* --- PHẦN MỤC TIÊU HỌC TẬP --- */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .goal-card {
+            background-color: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .goal-number {
+            font-size: 60px;
+            font-weight: 800;
+            color: #F7EFE5; /* Số lớn ẩn mờ ở nền */
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            line-height: 1;
+        }
+
+        .goal-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .goal-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- PHẢN HỒI GIAO DIỆN DI ĐỘNG --- */
         @media (max-width: 768px) {
-            .nav-container {
+            header {
                 flex-direction: column;
                 gap: 15px;
+                padding: 15px 5%;
             }
-            .intro-grid {
-                grid-template-columns: 1fr;
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            .section-title {
+                font-size: 26px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- THANH ĐIỀU HƯỚNG -->
+    <!-- THANH ĐIỀU HƯỚNG CHUẨN UX -->
     <header>
-        <div class="nav-container">
-            <div class="logo">
-                Nguyễn Đức Minh <span>PORTFOLIO</span>
+        <div class="logo-area">
+            <div class="logo-circle">BLG</div>
+            <div class="logo-text">
+                <h1>Bùi Linh Giang</h1>
+                <p>Digital Portfolio</p>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Trang chủ</a></li>
-                    <li><a href="#about">Giới thiệu</a></li>
-                    <li><a href="#projects">Dự án</a></li>
-                    <li><a href="#summary" class="active-btn">Tổng kết</a></li>
-                </ul>
-            </nav>
         </div>
+        <nav>
+            <a href="#" class="active">Giới thiệu</a>
+            <a href="#">Dự án</a>
+            <a href="#">Tổng kết</a>
+            <a href="#" class="btn-exercise">Xem 7 bài tập →</a>
+        </nav>
     </header>
 
-    <!-- TRANG CHỦ -->
-    <section id="home">
-        <div class="hero-content">
-            <h1>Nguyễn Đức Minh</h1>
-            <p>Chào mừng bạn đến với không gian học tập và sáng tạo của tôi</p>
+    <main class="container">
+        
+        <!-- PHẦN 1: GIỚI THIỆU BẢN THÂN -->
+        <div class="section-tag">Về tôi</div>
+        <h2 class="section-title">Một chút về Linh Giang</h2>
+        
+        <div class="intro-box">
+            <p>Xin chào, tôi là <strong>Bùi Linh Giang</strong>, sinh viên ngành <strong>Kinh tế quốc tế</strong> tại Trường Đại học Kinh tế — Đại học Quốc gia Hà Nội. Tôi bị cuốn hút bởi cách hàng hóa, thông tin và con người di chuyển xuyên biên giới — và đó cũng là lý do tôi chọn logistics làm hướng đi lâu dài.</p>
+            <p>Ngoài giờ học, tôi <strong>xem phim</strong> và <strong>đi du lịch</strong>. Hai sở thích này nghe có vẻ không liên quan đến chuyên ngành, nhưng cả hai đều dạy tôi một điều giống nhau: muốn hiểu một nơi hay một câu chuyện, phải chịu khó quan sát chi tiết và đặt câu hỏi về những gì mình đang thấy. Tôi mang đúng thói quen đó vào các bài tập trong portfolio này.</p>
         </div>
-    </section>
 
-    <!-- GIỚI THIỆU -->
-    <section id="about">
-        <h2 class="section-title">Giới thiệu bản thân</h2>
-        <div class="intro-grid">
-            <div class="avatar-box">
-                <!-- Thay link ảnh cá nhân của bạn vào đây -->
-                <img src="https://via.placeholder.com/200" alt="Ảnh chân dung">
+        <!-- BA KHỐI THÔNG TIN NỔI BẬT -->
+        <div class="about-grid">
+            <div class="info-card">
+                <div class="icon-wrapper">🌏</div>
+                <h3>Ngành học</h3>
+                <p>Kinh tế quốc tế — thương mại, chuỗi cung ứng và dòng chảy hàng hóa giữa các quốc gia.</p>
             </div>
-            <div>
-                <h3>Sinh viên Trường Đại học Kinh tế, ĐHQGHN</h3>
-                <p style="margin-top: 15px;">Học phần: Nhập môn Công nghệ số & Ứng dụng AI (VNU1001).</p>
-                <p style="margin-top: 10px;">Đây là nơi tôi lưu trữ, nhìn lại hành trình học tập và áp dụng các công cụ công nghệ mới nhất vào công việc, nghiên cứu của bản thân.</p>
+            
+            <div class="info-card">
+                <div class="icon-wrapper">🎥</div>
+                <h3>Sở thích</h3>
+                <p>Xem phim để hiểu cách kể chuyện; đi du lịch để nhìn tận mắt những gì sách vở mô tả.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- DỰ ÁN -->
-    <section id="projects">
-        <h2 class="section-title">Hành trình dự án</h2>
-        <div class="project-list">
-            <div class="project-card">
-                <h3>Dự án 01 — Nền tảng máy tính</h3>
-                <p>Thành thạo quản lý tệp tin, thư mục — bước đầu tổ chức dữ liệu học tập khoa học.</p>
-            </div>
-            <div class="project-card">
-                <h3>Dự án 02 — Khai thác dữ liệu</h3>
-                <p>Biết tìm kiếm và đánh giá độ tin cậy của nguồn học thuật, tránh thông tin sai lệch.</p>
-            </div>
-            <div class="project-card">
-                <h3>Dự án 03 — Kỹ thuật Prompt</h3>
-                <p>Hiểu cách "giao tiếp" với AI để khai thác kết quả chất lượng và có cấu trúc.</p>
-            </div>
-            <div class="project-card">
-                <h3>Dự án 04 — Hợp tác trực tuyến</h3>
-                <p>Ứng dụng Trello, Google Workspace, Zalo để làm việc nhóm hiệu quả.</p>
-            </div>
-            <div class="project-card">
-                <h3>Dự án 05 — Sáng tạo nội dung</h3>
-                <p>Kết hợp ChatGPT, DALL·E, Canva AI để tạo sản phẩm trực quan, sáng tạo.</p>
-            </div>
-            <div class="project-card">
-                <h3>Dự án 06 — Đạo đức & AI</h3>
-                <p>Xây dựng bộ nguyên tắc cá nhân, cam kết dùng AI trung thực và có trách nhiệm.</p>
+            
+            <div class="info-card">
+                <div class="icon-wrapper">📦</div>
+                <h3>Định hướng</h3>
+                <p>Trở thành chuyên viên logistics chuyên nghiệp — mảng nghề cần cả tư duy hệ thống lẫn công nghệ.</p>
             </div>
         </div>
-    </section>
 
-    <!-- TỔNG KẾT -->
-    <section id="summary">
-        <h2 class="section-title">Những kỹ năng cốt lõi</h2>
-        <div class="skills-grid">
-            <div class="skill-item">
-                <div class="skill-icon">💻</div>
-                <h4>Kỹ năng số</h4>
-                <p style="font-size: 0.9rem; margin-top: 10px; color: #555;">Sử dụng thành thạo công cụ số</p>
+        <!-- PHẦN 2: MỤC TIÊU HỌC TẬP -->
+        <div class="section-tag">Mục tiêu</div>
+        <h2 class="section-title">Mục tiêu học tập của tôi</h2>
+
+        <div class="goals-grid">
+            <div class="goal-card">
+                <div class="goal-number">01</div>
+                <div class="icon-wrapper">🏅</div>
+                <h3>Tốt nghiệp loại xuất sắc</h3>
+                <p>Không chỉ vì tấm bằng, mà vì mục tiêu này buộc tôi phải duy trì kỷ luật đều đặn qua từng học phần thay vì học dồn trước kỳ thi.</p>
             </div>
-            <div class="skill-item">
-                <div class="skill-icon">🤖</div>
-                <h4>Ứng dụng AI</h4>
-                <p style="font-size: 0.9rem; margin-top: 10px; color: #555;">Khai thác AI hiệu quả, đúng cách</p>
+
+            <div class="goal-card">
+                <div class="goal-number">02</div>
+                <div class="icon-wrapper">🗣️</div>
+                <h3>Thành thạo 2 ngoại ngữ</h3>
+                <p>Với Kinh tế quốc tế, ngoại ngữ không phải môn phụ mà là công cụ làm việc. Đây là điều kiện gần như bắt buộc nếu muốn làm logistics xuyên biên giới.</p>
             </div>
-            <div class="skill-item">
-                <div class="skill-icon">🔎</div>
-                <h4>Tư duy phản biện</h4>
-                <p style="font-size: 0.9rem; margin-top: 10px; color: #555;">Đánh giá & kiểm chứng thông tin</p>
+
+            <div class="goal-card">
+                <div class="goal-number">03</div>
+                <div class="icon-wrapper">🛠️</div>
+                <h3>Rèn kỹ năng thực dụng</h3>
+                <p>Các kỹ năng phục vụ trực tiếp cho học tập và công việc: tìm — thẩm định thông tin, làm việc nhóm trên nền tảng số, và sử dụng AI đúng cách.</p>
             </div>
         </div>
-    </section>
 
-    <!-- CHÂN TRANG -->
-    <footer>
-        <p><strong>Nguyễn Đức Minh</strong></p>
-        <p>MSV: 2505XXXX · Lớp: VNU1001_E252046</p>
-        <p>© 2026 Nguyễn Đức Minh · Portfolio được thực hiện với sự hỗ trợ của công cụ AI.</p>
-    </footer>
+    </main>
 
 </body>
 </html>
