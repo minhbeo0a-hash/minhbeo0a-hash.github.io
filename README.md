@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bùi Linh Giang — Portfolio Kỹ thuật số</title>
-    <!-- Font chữ Inter thanh lịch từ Google Fonts -->
+    <title>Portfolio Công nghệ số — Nguyễn Đức Minh</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- THIẾT LẬP CHUNG (RESET & VARIABLES) --- */
+        /* --- CẤU HÌNH BIẾN MÀU XANH NƯỚC BIỂN PASTEL --- */
         :root {
-            --bg-color: #FAF6F0; /* Màu nền kem pastel nhẹ */
-            --primary-color: #6B2D5C; /* Màu đỏ mận/tím sẫm làm điểm nhấn */
-            --text-dark: #2D2424; /* Màu chữ tối dịu mắt */
-            --text-muted: #6B5E5E; /* Màu chữ phụ */
-            --card-bg: #FFFFFF; /* Nền trắng cho các thẻ */
-            --shadow: 0 4px 20px rgba(107, 45, 92, 0.05); /* Đổ bóng nhẹ hồng */
+            --bg-color: #F4F7F9; /* Nền xanh xám nhạt dịu mát */
+            --primary-color: #1E4E79; /* Màu xanh nước biển sẫm sang trọng làm chủ đạo */
+            --text-dark: #1C252C; /* Màu chữ tối */
+            --text-muted: #556675; /* Màu chữ phụ */
+            --card-bg: #FFFFFF; /* Nền các khối thẻ */
+            --tag-bg: #E3EDF7; /* Nền nhãn xanh nhạt */
+            --tag-text: #2B5B84; /* Chữ trên nhãn */
+            --shadow: 0 4px 24px rgba(30, 78, 121, 0.05); /* Đổ bóng hiệu ứng xanh nhẹ */
             --border-radius: 16px;
         }
 
@@ -34,20 +35,31 @@
         a {
             text-decoration: none;
             color: inherit;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        /* --- THANH ĐIỀU HƯỚNG (HEADER) --- */
+        /* --- XỬ LÝ ẨN/HIỆN TRANG --- */
+        .page-content {
+            display: none;
+        }
+        
+        .page-content.active-page {
+            display: block;
+        }
+
+        /* --- NAVIGATION BAR (HEADER) --- */
         header {
             position: sticky;
             top: 0;
-            background-color: rgba(250, 246, 240, 0.9);
+            background-color: rgba(244, 247, 249, 0.9);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 15px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(30, 78, 121, 0.05);
         }
 
         .logo-area {
@@ -85,24 +97,24 @@
         nav {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
         }
 
-        nav a {
+        nav a.nav-link {
             font-size: 14px;
             font-weight: 500;
             color: var(--text-dark);
-        }
-
-        nav a.active {
-            background-color: var(--primary-color);
-            color: #FFFFFF;
             padding: 8px 16px;
             border-radius: 20px;
         }
 
+        nav a.nav-link.active {
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+        }
+
         .btn-exercise {
-            background-color: #EED6D6; /* Màu hồng pastel đậm */
+            background-color: #D6E4F0;
             color: var(--primary-color);
             padding: 8px 18px;
             border-radius: 20px;
@@ -110,16 +122,21 @@
             font-size: 14px;
         }
 
-        .btn-exercise:hover {
-            opacity: 0.9;
-        }
+        .btn-exercise:hover { opacity: 0.9; }
 
-        /* --- BỐ CỤC CHÍNH --- */
+        /* --- CONTAINER CHUNG --- */
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 40px 20px 60px 20px;
         }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .breadcrumb span { color: var(--primary-color); }
 
         .section-tag {
             text-align: center;
@@ -139,7 +156,113 @@
             color: var(--text-dark);
         }
 
-        /* --- PHẦN VỀ TÔI (ABOUT) --- */
+        /* HERO HEADER ĐẦU TRANG */
+        .hero-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            margin-top: 20px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: var(--tag-bg);
+            color: var(--primary-color);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .hero-text h2 {
+            font-size: 44px;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .profile-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 360px;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            background-color: var(--tag-bg);
+            color: var(--primary-color);
+            font-size: 24px;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+        }
+
+        .profile-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+        .profile-card > p { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+
+        .profile-info-list {
+            text-align: left;
+            list-style: none;
+            font-size: 13.5px;
+        }
+
+        .profile-info-list li {
+            padding: 10px 0;
+            border-top: 1px solid #EAEFF4;
+        }
+
+        .profile-info-list li strong { color: var(--text-muted); font-weight: 500; }
+        .profile-info-list li p { margin-top: 2px; font-weight: 600; }
+
+        /* ==========================================
+           TRANG 1: GIỚI THIỆU (ABOUT PAGE)
+           ========================================== */
         .intro-box {
             background-color: var(--card-bg);
             border-left: 5px solid var(--primary-color);
@@ -152,24 +275,17 @@
         .intro-box p {
             margin-bottom: 20px;
             font-size: 16px;
-            color: var(--text-dark);
             text-align: justify;
         }
 
-        .intro-box p:last-child {
-            margin-bottom: 0;
-        }
+        .intro-box p:last-child { margin-bottom: 0; }
+        .intro-box strong { color: var(--primary-color); }
 
-        .intro-box strong {
-            color: var(--primary-color);
-        }
-
-        /* --- LƯỚI THÔNG TIN SƠ LƯỢC (GRID CARDS) --- */
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .info-card {
@@ -180,9 +296,7 @@
             transition: transform 0.3s ease;
         }
 
-        .info-card:hover {
-            transform: translateY(-5px);
-        }
+        .info-card:hover { transform: translateY(-5px); }
 
         .icon-wrapper {
             width: 45px;
@@ -196,24 +310,13 @@
             margin-bottom: 20px;
         }
 
-        /* Tùy chỉnh màu icon theo vòng tròn pastel */
-        .info-card:nth-child(1) .icon-wrapper { background-color: #E8F0FE; }
-        .info-card:nth-child(2) .icon-wrapper { background-color: #FCE8E6; }
-        .info-card:nth-child(3) .icon-wrapper { background-color: #E6F4EA; }
+        .info-card:nth-child(1) .icon-wrapper { background-color: #E2ECF5; }
+        .info-card:nth-child(2) .icon-wrapper { background-color: #E6F3ED; }
+        .info-card:nth-child(3) .icon-wrapper { background-color: #F7EFE5; }
 
-        .info-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-        }
+        .info-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+        .info-card p { font-size: 14px; color: var(--text-muted); }
 
-        .info-card p {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        /* --- PHẦN MỤC TIÊU HỌC TẬP --- */
         .goals-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -232,126 +335,761 @@
         .goal-number {
             font-size: 60px;
             font-weight: 800;
-            color: #F7EFE5; /* Số lớn ẩn mờ ở nền */
+            color: #EBF1F6;
             position: absolute;
             top: 10px;
             right: 20px;
             line-height: 1;
         }
 
-        .goal-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-top: 15px;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 2;
+        .goal-card h3, .goal-card p { position: relative; z-index: 2; }
+        .goal-card h3 { font-size: 18px; font-weight: 600; margin-top: 15px; margin-bottom: 10px; }
+        .goal-card p { font-size: 14px; color: var(--text-muted); }
+
+        /* ==========================================
+           TRANG 2: DỰ ÁN (PROJECTS PAGE)
+           ========================================== */
+        .main-title {
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 12px;
         }
 
-        .goal-card p {
-            font-size: 14px;
+        .subtitle {
+            font-size: 16px;
             color: var(--text-muted);
-            position: relative;
-            z-index: 2;
+            max-width: 700px;
+            margin-bottom: 40px;
         }
 
-        /* --- PHẢN HỒI GIAO DIỆN DI ĐỘNG --- */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .stat-item h3 { font-size: 32px; font-weight: 700; color: var(--primary-color); }
+        .stat-item p { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+        .section-heading { font-size: 26px; font-weight: 700; margin-bottom: 30px; }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover { transform: translateY(-5px); }
+
+        .card-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px; }
+
+        .project-num {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-color);
+            background-color: var(--tag-bg);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .project-meta .subject-tag {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .project-meta h4 { font-size: 15px; font-weight: 700; margin-top: 4px; }
+
+        .tags-wrapper { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+
+        .tech-tag {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+
+        .project-desc { font-size: 13.5px; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; text-align: justify;}
+
+        /* CSS MỚI CHO PHẦN ĐÍNH KÈM SẢN PHẨM */
+        .attachment-box {
+            background-color: #F0F4F8;
+            border: 1px dashed #B8C9D9;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .attachment-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .attachment-link {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #2B5B84;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .attachment-link:hover {
+            color: #1E4E79;
+            text-decoration: underline;
+        }
+
+        .view-detail { font-size: 13px; font-weight: 600; color: var(--primary-color); }
+
+        .summary-banner-box {
+            background-color: #D6E4F0;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .summary-banner-box h4 { font-size: 20px; color: var(--primary-color); margin-bottom: 5px; }
+        .summary-banner-box p { font-size: 14px; color: var(--text-dark); margin-bottom: 0; }
+
+        .btn-go-summary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* ==========================================
+           TRANG 3: TỔNG KẾT (SUMMARY PAGE)
+           ========================================== */
+        .summary-container { max-width: 1000px; margin: 0 auto; }
+        .summary-container h2 { font-size: 22px; font-weight: 700; color: var(--primary-color); margin-top: 40px; margin-bottom: 15px; }
+        .summary-container p { margin-bottom: 20px; text-align: justify; }
+
+        .skills-list { margin-bottom: 40px; }
+        .skill-item { margin-bottom: 20px; }
+        .skill-title { font-weight: 700; display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 30px 0 50px 0;
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            background: #fff;
+        }
+
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th { background-color: #D6E4F0; color: var(--primary-color); font-weight: 700; text-align: left; padding: 14px 18px; font-size: 12px; letter-spacing: 0.5px; white-space: nowrap; }
+        td { padding: 16px 18px; border-bottom: 1px solid #EAF2F8; vertical-align: top; }
+        tr:last-child td { border-bottom: none; }
+
+        .table-btn-link {
+            background-color: var(--primary-color);
+            color: #FFFFFF !important;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .table-btn-link:hover {
+            opacity: 0.9;
+        }
+
+        .links-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 30px 0 60px 0; }
+        .link-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(30, 78, 121, 0.1);
+            padding: 16px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+        .link-card:hover { border-color: var(--primary-color); transform: translateY(-2px); }
+        .link-card.full-width { grid-column: span 2; }
+
+        .thank-you-banner {
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            text-align: center;
+            padding: 50px 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+        }
+        .thank-you-banner h2 { color: #FFFFFF; font-size: 30px; margin-top: 0; margin-bottom: 15px; }
+        .thank-you-banner p { font-size: 14px; opacity: 0.9; text-align: center; margin-bottom: 25px;}
+        .btn-back { background-color: #FFFFFF; color: var(--primary-color); padding: 10px 24px; border-radius: 20px; font-weight: 600; display: inline-block; }
+
+        /* --- FOOTER CHUNG --- */
+        footer {
+            background-color: #EBF1F6;
+            padding: 50px 10% 20px 10%;
+            border-top: 1px solid rgba(30, 78, 121, 0.05);
+            font-size: 13px;
+        }
+
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-color); margin-bottom: 15px; font-weight: 700; }
+        .footer-col p { color: var(--text-muted); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; color: var(--text-muted); }
+        .footer-col ul li a:hover { color: var(--primary-color); text-decoration: underline; }
+        .copyright { text-align: center; color: var(--text-muted); border-top: 1px solid rgba(30, 78, 121, 0.08); padding-top: 20px; font-size: 12px; }
+
+        /* --- DI ĐỘNG RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .hero-section { flex-direction: column; text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .profile-card { width: 100%; max-width: 400px; margin: 0 auto; }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        }
+
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 5%;
-            }
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-            .section-title {
-                font-size: 26px;
-            }
+            header { flex-direction: column; gap: 15px; padding: 15px 5%; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .projects-grid, .stats-bar, .footer-grid, .links-grid { grid-template-columns: 1fr; }
+            .link-card.full-width { grid-column: span 1; }
+            .summary-banner-box { flex-direction: column; text-align: center; gap: 15px; }
+            .main-title { font-size: 30px; }
+            .section-title { font-size: 26px; }
+            .hero-text h2 { font-size: 32px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- THANH ĐIỀU HƯỚNG CHUẨN UX -->
+    <!-- NAV BAR TOÀN CỤC -->
     <header>
         <div class="logo-area">
-            <div class="logo-circle">BLG</div>
+            <div class="logo-circle">NDM</div>
             <div class="logo-text">
-                <h1>Bùi Linh Giang</h1>
+                <h1>Nguyễn Đức Minh</h1>
                 <p>Digital Portfolio</p>
             </div>
         </div>
         <nav>
-            <a href="#" class="active">Giới thiệu</a>
-            <a href="#">Dự án</a>
-            <a href="#">Tổng kết</a>
-            <a href="#" class="btn-exercise">Xem 7 bài tập →</a>
+            <a onclick="switchPage('gioi-thieu')" id="nav-gioi-thieu" class="nav-link active">Giới thiệu</a>
+            <a onclick="switchPage('du-an')" id="nav-du-an" class="nav-link">Dự án</a>
+            <a onclick="switchPage('tong-ket')" id="nav-tong-ket" class="nav-link">Tổng kết</a>
+            <a onclick="switchPage('du-an')" class="btn-exercise">Xem 7 bài tập →</a>
         </nav>
     </header>
 
-    <main class="container">
-        
-        <!-- PHẦN 1: GIỚI THIỆU BẢN THÂN -->
-        <div class="section-tag">Về tôi</div>
-        <h2 class="section-title">Một chút về Linh Giang</h2>
-        
-        <div class="intro-box">
-            <p>Xin chào, tôi là <strong>Bùi Linh Giang</strong>, sinh viên ngành <strong>Kinh tế quốc tế</strong> tại Trường Đại học Kinh tế — Đại học Quốc gia Hà Nội. Tôi bị cuốn hút bởi cách hàng hóa, thông tin và con người di chuyển xuyên biên giới — và đó cũng là lý do tôi chọn logistics làm hướng đi lâu dài.</p>
-            <p>Ngoài giờ học, tôi <strong>xem phim</strong> và <strong>đi du lịch</strong>. Hai sở thích này nghe có vẻ không liên quan đến chuyên ngành, nhưng cả hai đều dạy tôi một điều giống nhau: muốn hiểu một nơi hay một câu chuyện, phải chịu khó quan sát chi tiết và đặt câu hỏi về những gì mình đang thấy. Tôi mang đúng thói quen đó vào các bài tập trong portfolio này.</p>
-        </div>
-
-        <!-- BA KHỐI THÔNG TIN NỔI BẬT -->
-        <div class="about-grid">
-            <div class="info-card">
-                <div class="icon-wrapper">🌏</div>
-                <h3>Ngành học</h3>
-                <p>Kinh tế quốc tế — thương mại, chuỗi cung ứng và dòng chảy hàng hóa giữa các quốc gia.</p>
+    <!-- ==========================================
+       TRANG 1: GIỚI THIỆU BẢN THÂN
+       ========================================== -->
+    <div id="page-gioi-thieu" class="page-content active-page">
+        <main class="container">
+            <!-- HERO WELCOME HEADER -->
+            <div class="hero-section">
+                <div class="hero-text">
+                    <span class="hero-badge">Nhập môn công nghệ số & AI</span>
+                    <h2>Nguyễn Đức Minh<br>Portfolio Công nghệ số</h2>
+                    <p>Hiện là sinh viên chuyên ngành Kinh tế phát triển tại Trường Đại học Kinh tế, ĐHQGHN. Không gian số này được xây dựng nhằm ghi lại toàn bộ tiến trình học hỏi và hoàn thiện bản thân qua từng học phần: từ kỹ năng hệ thống hóa dữ liệu, thẩm định tài liệu học thuật chuyên sâu, làm chủ kỹ nghệ Prompt AI đến mô hình cộng tác từ xa và tự động hóa quy trình nghiệp vụ thực tế.</p>
+                    <div class="hero-buttons">
+                        <a onclick="switchPage('du-an')" class="btn-primary">Khám phá các dự án →</a>
+                        <a onclick="switchPage('tong-ket')" class="btn-secondary">Đọc phần tổng kết</a>
+                    </div>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-avatar">NDM</div>
+                    <h3>Nguyễn Đức Minh</h3>
+                    <p>Kinh tế phát triển · K70</p>
+                    <ul class="profile-info-list">
+                        <li><strong>🎓 TRƯỜNG</strong><p>Đại học Kinh tế — ĐHQGHN</p></li>
+                        <li><strong>📚 NGÀNH HỌC</strong><p>Kinh tế phát triển</p></li>
+                        <li><strong>🎬 SỞ THÍCH</strong><p>Bóng đá, điện ảnh</p></li>
+                        <li><strong>🚢 ĐỊNH HƯỚNG</strong><p>Chuyên viên phân tích kinh tế</p></li>
+                    </ul>
+                </div>
             </div>
+
+            <div class="section-tag">Về tôi</div>
+            <h2 class="section-title">Một chút về Đức Minh</h2>
             
-            <div class="info-card">
-                <div class="icon-wrapper">🎥</div>
-                <h3>Sở thích</h3>
-                <p>Xem phim để hiểu cách kể chuyện; đi du lịch để nhìn tận mắt những gì sách vở mô tả.</p>
+            <div class="intro-box">
+                <p>Xin chào, tôi là <strong>Nguyễn Đức Minh</strong>, sinh viên ngành <strong>Kinh tế phát triển</strong> tại Trường Đại học Kinh tế — Đại học Quốc gia Hà Nội. Tôi có niềm đam mê lớn với việc phân tích các chỉ số dữ liệu vĩ mô, nghiên cứu mô hình tăng trưởng bền vững và các giải pháp hoạch định chính sách kinh tế. Đây cũng chính là động lực cốt lõi định hình mục tiêu trở thành một chuyên viên phân tích kinh tế trong tương lai của tôi.</p>
+                <p>Bên cạnh việc nghiên cứu học thuật, tôi thường dành thời gian cho <strong>bóng đá</strong> và <strong>điện ảnh</strong>. Thể thao rèn luyện cho tôi tư duy chiến thuật và tinh thần đồng đội phối hợp, trong khi phim ảnh giúp tôi duy trì góc nhìn đa chiều, tỉ mỉ khi quan sát các chi tiết nhỏ. Tôi đã lồng ghép một cách tự nhiên các kỹ năng mềm này vào chuỗi sản phẩm thực hành trong portfolio.</p>
             </div>
-            
-            <div class="info-card">
-                <div class="icon-wrapper">📦</div>
-                <h3>Định hướng</h3>
-                <p>Trở thành chuyên viên logistics chuyên nghiệp — mảng nghề cần cả tư duy hệ thống lẫn công nghệ.</p>
+
+            <div class="about-grid">
+                <div class="info-card">
+                    <div class="icon-wrapper">📈</div>
+                    <h3>Ngành học</h3>
+                    <p>Nghiên cứu sâu về các mô hình phát triển quốc gia, phân tích xu hướng chính sách vĩ mô và tối ưu hóa các nguồn lực kinh tế.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-wrapper">⚽</div>
+                    <h3>Sở thích</h3>
+                    <p>Bóng đá giúp duy trì thể lực và tính kết nối tập thể; điện ảnh mở rộng thế giới quan cùng khả năng lập luận đa chiều.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-wrapper">📊</div>
+                    <h3>Định hướng</h3>
+                    <p>Trở thành một chuyên gia phân tích kinh tế chuyên nghiệp nhạy bén trước mọi biến động thị trường dựa trên cơ sở dữ liệu số.</p>
+                </div>
+            </div>
+
+            <div class="section-tag">Mục tiêu</div>
+            <h2 class="section-title">Mục tiêu học tập của tôi</h2>
+
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <div class="goal-number">01</div>
+                    <div class="icon-wrapper">🏅</div>
+                    <h3>Tốt nghiệp loại giỏi</h3>
+                    <p>Hướng tới việc thiết lập kỷ luật học tập nghiêm túc, trau dồi tri thức bài bản qua từng học phần thay vì tư duy đối phó ngắn hạn.</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-number">02</div>
+                    <div class="icon-wrapper">🗣️</div>
+                    <h3>Thành thạo 2 ngoại ngữ</h3>
+                    <p>Xác định ngoại ngữ là chìa khóa bắt buộc đối với nhân sự ngành kinh tế để tiếp cận, khai thác hệ thống báo cáo và tài liệu quốc tế.</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-number">03</div>
+                    <div class="icon-wrapper">🛠️</div>
+                    <h3>Rèn kỹ năng thực dụng</h3>
+                    <p>Làm chủ các công cụ công nghệ thiết yếu phục vụ công việc: khai phá dữ liệu số, làm việc nhóm từ xa và ứng dụng AI có trách nhiệm.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ==========================================
+       TRANG 2: CÁC BÀI TẬP THÀNH PHẦN (PROJECTS)
+       ========================================== -->
+    <div id="page-du-an" class="page-content">
+        <main class="container">
+            <div class="breadcrumb">Trang chủ › <span>Dự án</span></div>
+
+            <h2 class="main-title">Các bài tập thành phần</h2>
+            <p class="subtitle">Hệ thống các bài tập thực hành bắt buộc thuộc học phần. Mỗi dự án đều thể hiện rõ mục tiêu nghiên cứu, quy trình triển khai chi tiết và sản phẩm báo cáo trực tuyến đính kèm.</p>
+
+            <div class="stats-bar">
+                <div class="stat-item"><h3>7</h3><p>bài tập hoàn thành</p></div>
+                <div class="stat-item"><h3>7/7</h3><p>Đã đính kèm Docs</p></div>
+                <div class="stat-item"><h3>10+</h3><p>công cụ số đã dùng</p></div>
+                <div class="stat-item"><h3>100%</h3><p>có sản phẩm đính kèm</p></div>
+            </div>
+
+            <div class="section-tag">Bảy bài bắt buộc</div>
+            <h3 class="section-heading">Theo đúng chương trình học phần</h3>
+
+            <div class="projects-grid">
+                <!-- BÀI 1 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="project-num">01</div>
+                            <div class="project-meta">
+                                <div class="subject-tag">Bài 1 · Máy tính & TB Ngoại vi</div>
+                                <h4>Thao tác cơ bản với tệp tin</h4>
+                            </div>
+                        </div>
+                        <div class="tags-wrapper">
+                            <span class="tech-tag">File Explorer</span>
+                            <span class="tech-tag">12 bước</span>
+                        </div>
+                        <p class="project-desc">Xây dựng cấu trúc cây thư mục logic, khoa học nhằm tối ưu hóa việc quản lý dữ liệu nghiên cứu và theo dõi toàn bộ vòng đời tệp tin.</p>
+                        
+                        <!-- PHẦN ĐÍNH KÈM BÀI 1 -->
+                        <div class="attachment-box">
+                            <div class="attachment-title">📎 Sản phẩm đính kèm:</div>
+                            <a href="https://docs.google.com/document/d/1brQQiTM9dldQseanA7Iv2eUxkQ-DaUfx7-Qh6pFuD_4/edit?tab=t.0" target="_blank" class="attachment-link">Tài liệu thực hành Bài 1 ↗</a>
+                        </div>
+                    </div>
+                    <a onclick="switchPage('tong-ket')" class="view-detail">Xem chi tiết trên bảng →</a>
+                </div>
+
+                <!-- BÀI 2 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="project-num">02</div>
+                            <div class="project-meta">
+                                <div class="subject-tag">Bài 2 · Khai thác dữ liệu</div>
+                                <h4>Tìm kiếm & đánh giá thông tin</h4>
+                            </div>
+                        </div>
+                        <div class="tags-wrapper">
+                            <span class="tech-tag">Chính sách vĩ mô</span>
+                            <span class="tech-tag">Google Scholar</span>
+                        </div>
+                        <p class="project-desc">Thiết lập hệ thống thang điểm 5 tiêu chí nghiêm ngặt phục vụ việc thẩm định chất lượng và độ tin cậy của 10 nguồn học thuật tài liệu vĩ mô.</p>
+                        
+                        <!-- PHẦN ĐÍNH KÈM BÀI 2 -->
+                        <div class="attachment-box">
+                            <div class="attachment-title">📎 Sản phẩm đính kèm:</div>
+                            <a href="https://docs.google.com/document/d/1NvbJB94esaRy59h6qX1_h6m7tFYwe4SE/edit" target="_blank" class="attachment-link">Tài liệu thực hành Bài 2 ↗</a>
+                        </div>
+                    </div>
+                    <a onclick="switchPage('tong-ket')" class="view-detail">Xem chi tiết trên bảng →</a>
+                </div>
+
+                <!-- BÀI 3 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="project-num">03</div>
+                            <div class="project-meta">
+                                <div class="subject-tag">Bài 3 · Tổng quan về AI</div>
+                                <h4>Viết Prompt hiệu quả cho học tập</h4>
+                            </div>
+                        </div>
+                        <div class="tags-wrapper">
+                            <span class="tech-tag">Prompt Engineering</span>
+                            <span class="tech-tag">3 cấp độ</span>
+                        </div>
+                        <p class="project-desc">Ứng dụng kỹ nghệ xây dựng cấu trúc prompt nâng cao để phân tích mô hình, đồng thời đánh giá so sánh chất lượng phản hồi từ các AI khác nhau.</p>
+                        
+                        <!-- PHẦN ĐÍNH KÈM BÀI 3 -->
+                        <div class="attachment-box">
+                            <div class="attachment-title">📎 Sản phẩm đính kèm:</div>
+                            <a href="https://docs.google.com/document/d/1pXC6yvS-fQyKNFQHhQEM8GtHygFCmfgO/edit" target="_blank" class="attachment-link">Tài liệu thực hành Bài 3 ↗</a>
+                        </div>
+                    </div>
+                    <a onclick="switchPage('tong-ket')" class="view-detail">Xem chi tiết trên bảng →</a>
+                </div>
+
+                <!-- BÀI 4 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="project-num">04</div>
+                            <div class="project-meta">
+                                <div class="subject-tag">Bài 4 · Giao tiếp & hợp tác số</div>
+                                <h4>Công cụ cộng tác dự án nhóm</h4>
+                            </div>
+                        </div>
+                        <div class="tags-wrapper">
+                            <span class="tech-tag">Trello</span>
+                            <span class="tech-tag">Google Docs</span>
+                        </div>
+                        <p class="project-desc">Vận hành Trello cùng không gian lưu trữ đám mây để phân rã nhiệm vụ, quản lý tiến độ nhóm trong bài nghiên cứu thị trường kinh tế số.</p>
+                        
+                        <!-- PHẦN ĐÍNH KÈM BÀI 4 -->
+                        <div class="attachment-box">
+                            <div class="attachment-title">📎 Sản phẩm đính kèm:</div>
+                            <a href="https://docs.google.com/document/d/1mXovJNtWEofRP8tYt9AomLYS_YBaHVjx/edit" target="_blank" class="attachment-link">Tài liệu thực hành Bài 4 ↗</a>
+                        </div>
+                    </div>
+                    <a onclick="switchPage('tong-ket')" class="view-detail">Xem chi tiết trên bảng →</a>
+                </div>
+
+                <!-- BÀI 5 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="project-num">05</div>
+                            <div class="project-meta">
+                                <div class="subject-tag">Bài 5 · Sáng tạo nội dung</div>
+                                <h4>Ứng dụng AI sáng tạo nội dung</h4>
+                            </div>
+                        </div>
+                        <div class="tags-wrapper">
+                            <span class="tech-tag">Gemini</span>
+                            <span class="tech-tag">Canva AI</span>
+                        </div>
+                        <p class="project-desc">Triển khai truyền thông số hóa thông tin: Ứng dụng AI thiết kế các sản phẩm đồ họa trực quan hóa số liệu (Infographic) chuẩn chuyên nghiệp.</p>
+                        
+                        <!-- PHẦN ĐÍNH KÈM BÀI 5 -->
+                        <div class="attachment-box">
+                            <div class="attachment-title">📎 Sản phẩm đính kèm:</div>
+                            <a href="https://docs.google.com/document/d/11dcS6WSbSSLZqUU3ztIEeIBep2jiBJmT/edit" target="_blank" class="attachment-link">Tài liệu thực hành Bài 5 ↗</a>
+                        </div>
+                    </div>
+                    <a onclick="switchPage('tong-ket')" class="view-detail">Xem chi tiết trên bảng →</a>
+                </div>
+
+                <!-- BÀI 6 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="project-num">06</div>
+                            <div class="project-meta">
+                                <div class="subject-tag">Bài 6 · An toàn & Liêm chính</div>
+                                <h4>Sử dụng AI có trách nhiệm</h4>
+                            </div>
+                        </div>
+                        <div class="tags-wrapper">
+                            <span class="tech-tag">Chính sách HSB</span>
+                            <span class="tech-tag">Bộ 7 nguyên tắc</span>
+                        </div>
+                        <p class="project-desc">Xây dựng bản tuyên ngôn cá nhân về nguyên tắc sử dụng AI minh bạch và đảm bảo tính liêm chính trong nghiên cứu học thuật kinh tế.</p>
+                        
+                        <!-- PHẦN ĐÍNH KÈM BÀI 6 -->
+                        <div class="attachment-box">
+                            <div class="attachment-title">📎 Sản phẩm đính kèm:</div>
+                            <a href="https://docs.google.com/document/d/1dtwKOpTXee5Iby3O64oyeyBGJWUVqIxi/edit" target="_blank" class="attachment-link">Tài liệu thực hành Bài 6 ↗</a>
+                        </div>
+                    </div>
+                    <a onclick="switchPage('tong-ket')" class="view-detail">Xem chi tiết trên bảng →</a>
+                </div>
+
+                <!-- BÀI 7 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="project-num">07</div>
+                            <div class="project-meta">
+                                <div class="subject-tag">Bài 7 · Ứng dụng thực tế</div>
+                                <h4>Tự động hóa báo cáo chỉ số kinh tế</h4>
+                            </div>
+                        </div>
+                        <div class="tags-wrapper">
+                            <span class="tech-tag">Make.com / Automation</span>
+                            <span class="tech-tag">Google Sheets</span>
+                        </div>
+                        <p class="project-desc">Thiết lập kịch bản tự động hóa tự động thu thập số liệu FDI và lạm phát trực tiếp từ API nguồn mở về bảng tính chuyên dụng, loại bỏ thao tác thủ công nhập liệu.</p>
+                        
+                        <!-- PHẦN ĐÍNH KÈM BÀI 7 -->
+                        <div class="attachment-box">
+                            <div class="attachment-title">📎 Sản phẩm đính kèm:</div>
+                            <a href="https://docs.google.com/document/d/1qg8fw-7t8B2YqUB1Go8G1vOeYV-qOU8y/edit" target="_blank" class="attachment-link">Tài liệu thực hành Bài 7 ↗</a>
+                        </div>
+                    </div>
+                    <a onclick="switchPage('tong-ket')" class="view-detail">Xem chi tiết trên bảng →</a>
+                </div>
+            </div>
+
+            <!-- SUMMARY BANNER BOX -->
+            <div class="summary-banner-box">
+                <div>
+                    <h4>Sẵn sàng xem bản phân tích tổng hợp chưa?</h4>
+                    <p>Toàn bộ bảng theo dõi kết quả, công cụ số ứng dụng và cam kết năng lực số được trình bày chi tiết ở trang kế tiếp.</p>
+                </div>
+                <a onclick="switchPage('tong-ket')" class="btn-go-summary">Đi tới Tổng kết →</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- ==========================================
+       TRANG 3: TỔNG KẾT (SUMMARY PAGE)
+       ========================================== -->
+    <div id="page-tong-ket" class="page-content">
+        <main class="container summary-container">
+            <div class="breadcrumb">Trang chủ › <span>Tổng kết</span></div>
+
+            <h2 class="main-title">Tổng kết học phần & Đánh giá năng lực số</h2>
+            <p class="subtitle">Báo cáo tổng hợp tiến trình học hỏi, hệ thống hóa các sản phẩm thực hành cùng định hướng dài hạn trong kỷ nguyên số hóa nền kinh tế.</p>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Học phần / Bài tập thực hành</th>
+                            <th>Công cụ công nghệ làm chủ</th>
+                            <th>Sản phẩm đầu ra dạng số</th>
+                            <th>Tài liệu thực chứng</th>
+                            <th>Tiến độ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Bài 1: Thao tác tệp tin</strong></td>
+                            <td>File Explorer, ZIP</td>
+                            <td>Hệ thống sơ đồ cây thư mục nghiên cứu khoa học</td>
+                            <td><a href="https://docs.google.com/document/d/1brQQiTM9dldQseanA7Iv2eUxkQ-DaUfx7-Qh6pFuD_4/edit?tab=t.0" target="_blank" class="table-btn-link">Mở tài liệu ↗</a></td>
+                            <td>Hoàn thành</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Bài 2: Khai thác dữ liệu</strong></td>
+                            <td>Google Scholar, Scopus</td>
+                            <td>Bảng thẩm định học thuật 5 tiêu chí của 10 tài liệu vĩ mô</td>
+                            <td><a href="https://docs.google.com/document/d/1NvbJB94esaRy59h6qX1_h6m7tFYwe4SE/edit" target="_blank" class="table-btn-link">Mở tài liệu ↗</a></td>
+                            <td>Hoàn thành</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Bài 3: Viết Prompt AI</strong></td>
+                            <td>Gemini, ChatGPT, Claude</td>
+                            <td>Bộ khung prompt đa cấp độ phân tích dữ liệu kinh tế</td>
+                            <td><a href="https://docs.google.com/document/d/1pXC6yvS-fQyKNFQHhQEM8GtHygFCmfgO/edit" target="_blank" class="table-btn-link">Mở tài liệu ↗</a></td>
+                            <td>Hoàn thành</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>Bài 4: Cộng tác dự án số</strong></td>
+                            <td>Trello, Google Drive, Meet</td>
+                            <td>Bảng phân rã luồng công việc nhóm phân tích thị trường</td>
+                            <td><a href="https://docs.google.com/document/d/1mXovJNtWEofRP8tYt9AomLYS_YBaHVjx/edit" target="_blank" class="table-btn-link">Mở tài liệu ↗</a></td>
+                            <td>Hoàn thành</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>Bài 5: Sáng tạo nội dung</strong></td>
+                            <td>Canva AI, PowerPoint</td>
+                            <td>Ấn phẩm Infographic trực quan hóa GDP và xuất nhập khẩu</td>
+                            <td><a href="https://docs.google.com/document/d/11dcS6WSbSSLZqUU3ztIEeIBep2jiBJmT/edit" target="_blank" class="table-btn-link">Mở tài liệu ↗</a></td>
+                            <td>Hoàn thành</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><strong>Bài 6: Đạo đức & Liêm chính AI</strong></td>
+                            <td>Turnitin, AI Detector</td>
+                            <td>Bản cam kết học thuật và nguyên tắc sử dụng AI minh bạch</td>
+                            <td><a href="https://docs.google.com/document/d/1dtwKOpTXee5Iby3O64oyeyBGJWUVqIxi/edit" target="_blank" class="table-btn-link">Mở tài liệu ↗</a></td>
+                            <td>Hoàn thành</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><strong>Bài 7: Tự động hóa quy trình</strong></td>
+                            <td>Make.com, Google Sheets</td>
+                            <td>Hệ thống tự động đồng bộ hóa chỉ số tài chính vĩ mô</td>
+                            <td><a href="https://docs.google.com/document/d/1qg8fw-7t8B2YqUB1Go8G1vOeYV-qOU8y/edit" target="_blank" class="table-btn-link">Mở tài liệu ↗</a></td>
+                            <td>Hoàn thành</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Biểu đồ năng lực & Kỹ năng số đạt được</h2>
+            <div class="skills-list">
+                <div class="skill-item">
+                    <div class="skill-title">📊 Quản trị dữ liệu & Hệ thống hóa</div>
+                    <p>Có năng lực tổ chức hệ thống tài nguyên khoa học, đảm bảo tìm kiếm thông tin nhanh chóng, cấu trúc logic phục vụ đắc lực cho các bài báo cáo kinh tế học thuật.</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">🤖 Kỹ nghệ giao tiếp AI (Prompt Engineering)</div>
+                    <p>Biết cách viết câu lệnh đa tầng (vai trò, bối cảnh, nhiệm vụ, định dạng mong muốn) để khai thác tối đa tri thức từ mô hình ngôn ngữ lớn một cách có trách nhiệm.</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">⚙️ Hợp tác không biên giới & Tự động hóa</div>
+                    <p>Thành thạo kỹ năng phân chia tiến độ trên Kanban Board kỹ thuật số và biết cách chuyển đổi các tác vụ thủ công lặp đi lặp lại thành kịch bản tự động hóa thông minh.</p>
+                </div>
+            </div>
+
+            <h2>Liên kết tài nguyên học liệu số</h2>
+            <div class="links-grid">
+                <a href="https://drive.google.com" target="_blank" class="link-card">
+                    <span>📂 Thư mục sản phẩm thực tế (Google Drive)</span>
+                    <span>↗</span>
+                </a>
+                <a href="#" class="link-card">
+                    <span>📄 Báo cáo tự đánh giá năng lực số cá nhân</span>
+                    <span>↗</span>
+                </a>
+                <a href="#" class="link-card full-width">
+                    <span>🌐 Slide thuyết trình tổng kết toàn diện của học phần</span>
+                    <span>↗</span>
+                </a>
+            </div>
+
+            <div class="thank-you-banner">
+                <h2>Cảm ơn thầy cô và các bạn đã ghé thăm!</h2>
+                <p>Nỗ lực nâng cao năng lực số hôm nay là hành trang cốt lõi để tôi từng bước vững vàng vươn tới mục tiêu trở thành một chuyên viên phân tích kinh tế toàn diện.</p>
+                <a onclick="switchPage('gioi-thieu')" class="btn-back">Quay lại Trang chủ</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER TOÀN CỤC -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Nguyễn Đức Minh</h4>
+                <p>Sinh viên Kinh tế phát triển - Trường Đại học Kinh tế, ĐHQGHN. Đam mê nghiên cứu tăng trưởng, hoạch định chính sách dựa trên số liệu thực chứng và chuyển đổi số nghiệp vụ.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Điều hướng nhanh</h4>
+                <ul>
+                    <li><a onclick="switchPage('gioi-thieu')">Giới thiệu</a></li>
+                    <li><a onclick="switchPage('du-an')">Danh sách dự án</a></li>
+                    <li><a onclick="switchPage('tong-ket')">Tổng kết học phần</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Liên hệ học tập</h4>
+                <ul>
+                    <li>Email: minh.nd@vnu.edu.vn</li>
+                    <li>Địa chỉ: Cầu Giấy, Hà Nội</li>
+                </ul>
             </div>
         </div>
-
-        <!-- PHẦN 2: MỤC TIÊU HỌC TẬP -->
-        <div class="section-tag">Mục tiêu</div>
-        <h2 class="section-title">Mục tiêu học tập của tôi</h2>
-
-        <div class="goals-grid">
-            <div class="goal-card">
-                <div class="goal-number">01</div>
-                <div class="icon-wrapper">🏅</div>
-                <h3>Tốt nghiệp loại xuất sắc</h3>
-                <p>Không chỉ vì tấm bằng, mà vì mục tiêu này buộc tôi phải duy trì kỷ luật đều đặn qua từng học phần thay vì học dồn trước kỳ thi.</p>
-            </div>
-
-            <div class="goal-card">
-                <div class="goal-number">02</div>
-                <div class="icon-wrapper">🗣️</div>
-                <h3>Thành thạo 2 ngoại ngữ</h3>
-                <p>Với Kinh tế quốc tế, ngoại ngữ không phải môn phụ mà là công cụ làm việc. Đây là điều kiện gần như bắt buộc nếu muốn làm logistics xuyên biên giới.</p>
-            </div>
-
-            <div class="goal-card">
-                <div class="goal-number">03</div>
-                <div class="icon-wrapper">🛠️</div>
-                <h3>Rèn kỹ năng thực dụng</h3>
-                <p>Các kỹ năng phục vụ trực tiếp cho học tập và công việc: tìm — thẩm định thông tin, làm việc nhóm trên nền tảng số, và sử dụng AI đúng cách.</p>
-            </div>
+        <div class="copyright">
+            <p>© 2026 Nguyễn Đức Minh. Thiết kế tối giản tối ưu cho Portfolio học thuật số.</p>
         </div>
+    </footer>
 
-    </main>
+    <!-- CODE SCRIPT ĐIỀU HƯỚNG SPA -->
+    <script>
+        function switchPage(pageId) {
+            // 1. Ẩn toàn bộ các trang nội dung
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('active-page');
+            });
 
+            // 2. Hiển thị trang mục tiêu được click chọn
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+            }
+
+            // 3. Xóa class 'active' khỏi toàn bộ các nút điều hướng trên Menu
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // 4. Gắn class 'active' vào nút đang được chọn để làm nổi bật
+            const activeNavLink = document.getElementById('nav-' + pageId);
+            if (activeNavLink) {
+                activeNavLink.classList.add('active');
+            }
+
+            // 5. Cuộn mượt mà trang lên đầu để trải nghiệm mượt mà nhất
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
