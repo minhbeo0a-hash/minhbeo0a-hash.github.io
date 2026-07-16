@@ -1,357 +1,295 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bùi Linh Giang — Portfolio Kỹ thuật số</title>
-    <!-- Font chữ Inter thanh lịch từ Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* --- THIẾT LẬP CHUNG (RESET & VARIABLES) --- */
-        :root {
-            --bg-color: #FAF6F0; /* Màu nền kem pastel nhẹ */
-            --primary-color: #6B2D5C; /* Màu đỏ mận/tím sẫm làm điểm nhấn */
-            --text-dark: #2D2424; /* Màu chữ tối dịu mắt */
-            --text-muted: #6B5E5E; /* Màu chữ phụ */
-            --card-bg: #FFFFFF; /* Nền trắng cho các thẻ */
-            --shadow: 0 4px 20px rgba(107, 45, 92, 0.05); /* Đổ bóng nhẹ hồng */
-            --border-radius: 16px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-        }
-
-        /* --- THANH ĐIỀU HƯỚNG (HEADER) --- */
-        header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(250, 246, 240, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 15px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-circle {
-            background-color: var(--primary-color);
-            color: #FFFFFF;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .logo-text h1 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .logo-text p {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        nav a {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-
-        nav a.active {
-            background-color: var(--primary-color);
-            color: #FFFFFF;
-            padding: 8px 16px;
-            border-radius: 20px;
-        }
-
-        .btn-exercise {
-            background-color: #EED6D6; /* Màu hồng pastel đậm */
-            color: var(--primary-color);
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .btn-exercise:hover {
-            opacity: 0.9;
-        }
-
-        /* --- BỐ CỤC CHÍNH --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .section-tag {
-            text-align: center;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 40px;
-            color: var(--text-dark);
-        }
-
-        /* --- PHẦN VỀ TÔI (ABOUT) --- */
-        .intro-box {
-            background-color: var(--card-bg);
-            border-left: 5px solid var(--primary-color);
-            padding: 35px;
-            border-radius: 4px var(--border-radius) var(--border-radius) 4px;
-            box-shadow: var(--shadow);
-            margin-bottom: 40px;
-        }
-
-        .intro-box p {
-            margin-bottom: 20px;
-            font-size: 16px;
-            color: var(--text-dark);
-            text-align: justify;
-        }
-
-        .intro-box p:last-child {
-            margin-bottom: 0;
-        }
-
-        .intro-box strong {
-            color: var(--primary-color);
-        }
-
-        /* --- LƯỚI THÔNG TIN SƠ LƯỢC (GRID CARDS) --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 80px;
-        }
-
-        .info-card {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .info-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .icon-wrapper {
-            width: 45px;
-            height: 45px;
-            background-color: var(--bg-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-
-        /* Tùy chỉnh màu icon theo vòng tròn pastel */
-        .info-card:nth-child(1) .icon-wrapper { background-color: #E8F0FE; }
-        .info-card:nth-child(2) .icon-wrapper { background-color: #FCE8E6; }
-        .info-card:nth-child(3) .icon-wrapper { background-color: #E6F4EA; }
-
-        .info-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-        }
-
-        .info-card p {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        /* --- PHẦN MỤC TIÊU HỌC TẬP --- */
-        .goals-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .goal-card {
-            background-color: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .goal-number {
-            font-size: 60px;
-            font-weight: 800;
-            color: #F7EFE5; /* Số lớn ẩn mờ ở nền */
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            line-height: 1;
-        }
-
-        .goal-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-top: 15px;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .goal-card p {
-            font-size: 14px;
-            color: var(--text-muted);
-            position: relative;
-            z-index: 2;
-        }
-
-        /* --- PHẢN HỒI GIAO DIỆN DI ĐỘNG --- */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 5%;
-            }
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-            .section-title {
-                font-size: 26px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bùi Linh Giang — Portfolio Kỹ thuật số</title>
+  <meta name="description" content="Portfolio Kỹ thuật số của Bùi Linh Giang, sinh viên Kinh tế quốc tế, Trường Đại học Kinh tế – ĐHQGHN. Môn Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
 </head>
 <body>
 
-    <!-- THANH ĐIỀU HƯỚNG CHUẨN UX -->
-    <header>
-        <div class="logo-area">
-            <div class="logo-circle">BLG</div>
-            <div class="logo-text">
-                <h1>Bùi Linh Giang</h1>
-                <p>Digital Portfolio</p>
-            </div>
-        </div>
-        <nav>
-            <a href="#" class="active">Giới thiệu</a>
-            <a href="#">Dự án</a>
-            <a href="#">Tổng kết</a>
-            <a href="#" class="btn-exercise">Xem 7 bài tập →</a>
-        </nav>
-    </header>
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">BLG</span>
+      <span class="brand-text">
+        <b>Bùi Linh Giang</b>
+        <span>Digital Portfolio</span>
+      </span>
+    </a>
+    <button class="nav-toggle" aria-label="Mở menu" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a class="active" href="index.html">Giới thiệu</a></li>
+      <li><a href="du-an.html">Dự án</a></li>
+      <li><a href="tong-ket.html">Tổng kết</a></li>
+      <li><a class="btn btn-primary" style="padding:9px 18px;font-size:.85rem" href="du-an.html">Xem 7 bài tập →</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <main class="container">
-        
-        <!-- PHẦN 1: GIỚI THIỆU BẢN THÂN -->
-        <div class="section-tag">Về tôi</div>
-        <h2 class="section-title">Một chút về Linh Giang</h2>
-        
-        <div class="intro-box">
-            <p>Xin chào, tôi là <strong>Bùi Linh Giang</strong>, sinh viên ngành <strong>Kinh tế quốc tế</strong> tại Trường Đại học Kinh tế — Đại học Quốc gia Hà Nội. Tôi bị cuốn hút bởi cách hàng hóa, thông tin và con người di chuyển xuyên biên giới — và đó cũng là lý do tôi chọn logistics làm hướng đi lâu dài.</p>
-            <p>Ngoài giờ học, tôi <strong>xem phim</strong> và <strong>đi du lịch</strong>. Hai sở thích này nghe có vẻ không liên quan đến chuyên ngành, nhưng cả hai đều dạy tôi một điều giống nhau: muốn hiểu một nơi hay một câu chuyện, phải chịu khó quan sát chi tiết và đặt câu hỏi về những gì mình đang thấy. Tôi mang đúng thói quen đó vào các bài tập trong portfolio này.</p>
-        </div>
+<main>
 
-        <!-- BA KHỐI THÔNG TIN NỔI BẬT -->
-        <div class="about-grid">
-            <div class="info-card">
-                <div class="icon-wrapper">🌏</div>
-                <h3>Ngành học</h3>
-                <p>Kinh tế quốc tế — thương mại, chuỗi cung ứng và dòng chảy hàng hóa giữa các quốc gia.</p>
-            </div>
-            
-            <div class="info-card">
-                <div class="icon-wrapper">🎥</div>
-                <h3>Sở thích</h3>
-                <p>Xem phim để hiểu cách kể chuyện; đi du lịch để nhìn tận mắt những gì sách vở mô tả.</p>
-            </div>
-            
-            <div class="info-card">
-                <div class="icon-wrapper">📦</div>
-                <h3>Định hướng</h3>
-                <p>Trở thành chuyên viên logistics chuyên nghiệp — mảng nghề cần cả tư duy hệ thống lẫn công nghệ.</p>
-            </div>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Nhập môn Công nghệ số &amp; AI</span>
+      <h1>Bùi Linh Giang<br><em>Portfolio Kỹ thuật số</em></h1>
+      <p class="hero-sub">Sinh viên Kinh tế quốc tế — Trường Đại học Kinh tế, ĐHQGHN</p>
+      <p class="hero-lead">
+        Nơi tôi tập hợp lại toàn bộ hành trình của môn học: từ những thao tác tệp tin
+        đầu tiên, đến cách đánh giá một nguồn học thuật, viết prompt cho AI, phối hợp
+        nhóm trên nền tảng số và tự động hóa một quy trình thật.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="du-an.html">Khám phá các dự án →</a>
+        <a class="btn btn-ghost" href="tong-ket.html">Đọc phần tổng kết</a>
+      </div>
+    </div>
 
-        <!-- PHẦN 2: MỤC TIÊU HỌC TẬP -->
-        <div class="section-tag">Mục tiêu</div>
-        <h2 class="section-title">Mục tiêu học tập của tôi</h2>
+    <aside class="hero-card">
+      <div class="avatar">LG</div>
+      <h3>Bùi Linh Giang</h3>
+      <p class="role">Kinh tế quốc tế · K70</p>
+      <ul class="fact-list">
+        <li>
+          <span class="ico">🎓</span>
+          <span><b>Trường</b>Đại học Kinh tế — ĐHQGHN</span>
+        </li>
+        <li>
+          <span class="ico">📚</span>
+          <span><b>Ngành học</b>Kinh tế quốc tế</span>
+        </li>
+        <li>
+          <span class="ico">🎬</span>
+          <span><b>Sở thích</b>Xem phim, đi du lịch</span>
+        </li>
+        <li>
+          <span class="ico">🚢</span>
+          <span><b>Định hướng</b>Chuyên viên logistics chuyên nghiệp</span>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</section>
 
-        <div class="goals-grid">
-            <div class="goal-card">
-                <div class="goal-number">01</div>
-                <div class="icon-wrapper">🏅</div>
-                <h3>Tốt nghiệp loại xuất sắc</h3>
-                <p>Không chỉ vì tấm bằng, mà vì mục tiêu này buộc tôi phải duy trì kỷ luật đều đặn qua từng học phần thay vì học dồn trước kỳ thi.</p>
-            </div>
+<!-- GIỚI THIỆU BẢN THÂN -->
+<section class="section section-tint">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">Về tôi</span>
+      <h2>Một chút về Linh Giang</h2>
+      <div class="divider"></div>
+    </div>
 
-            <div class="goal-card">
-                <div class="goal-number">02</div>
-                <div class="icon-wrapper">🗣️</div>
-                <h3>Thành thạo 2 ngoại ngữ</h3>
-                <p>Với Kinh tế quốc tế, ngoại ngữ không phải môn phụ mà là công cụ làm việc. Đây là điều kiện gần như bắt buộc nếu muốn làm logistics xuyên biên giới.</p>
-            </div>
+    <div class="wrap narrow" style="padding:0">
+      <div class="callout reveal">
+        <p>
+          Xin chào, tôi là <strong>Bùi Linh Giang</strong>, sinh viên ngành
+          <strong>Kinh tế quốc tế</strong> tại Trường Đại học Kinh tế — Đại học Quốc gia Hà Nội.
+          Tôi bị cuốn hút bởi cách hàng hóa, thông tin và con người di chuyển xuyên biên giới —
+          và đó cũng là lý do tôi chọn logistics làm hướng đi lâu dài.
+        </p>
+        <p>
+          Ngoài giờ học, tôi <strong>xem phim</strong> và <strong>đi du lịch</strong>. Hai sở thích
+          nghe có vẻ không liên quan đến chuyên ngành, nhưng cả hai đều dạy tôi một điều giống
+          nhau: muốn hiểu một nơi hay một câu chuyện, phải chịu khó quan sát chi tiết và đặt câu hỏi
+          về những gì mình đang thấy. Tôi mang đúng thói quen đó vào các bài tập trong portfolio này.
+        </p>
+      </div>
+    </div>
 
-            <div class="goal-card">
-                <div class="goal-number">03</div>
-                <div class="icon-wrapper">🛠️</div>
-                <h3>Rèn kỹ năng thực dụng</h3>
-                <p>Các kỹ năng phục vụ trực tiếp cho học tập và công việc: tìm — thẩm định thông tin, làm việc nhóm trên nền tảng số, và sử dụng AI đúng cách.</p>
-            </div>
-        </div>
+    <div class="grid grid-3" style="margin-top:34px">
+      <article class="card reveal">
+        <div class="card-ico">🌏</div>
+        <h3>Ngành học</h3>
+        <p>Kinh tế quốc tế — thương mại, chuỗi cung ứng và dòng chảy hàng hóa giữa các quốc gia.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card-ico">🎥</div>
+        <h3>Sở thích</h3>
+        <p>Xem phim để hiểu cách kể chuyện; đi du lịch để nhìn tận mắt những gì sách vở mô tả.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card-ico">📦</div>
+        <h3>Định hướng</h3>
+        <p>Trở thành chuyên viên logistics chuyên nghiệp — mảng nghề cần cả tư duy hệ thống lẫn công nghệ.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-    </main>
+<!-- MỤC TIÊU HỌC TẬP -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">Mục tiêu</span>
+      <h2>Mục tiêu học tập của tôi</h2>
+      <div class="divider"></div>
+      <p>Ba điều tôi đặt ra cho quãng thời gian đại học và đang từng bước theo đuổi.</p>
+    </div>
 
+    <div class="grid grid-3">
+      <article class="card goal-card reveal">
+        <span class="num">01</span>
+        <div class="card-ico">🏅</div>
+        <h3>Tốt nghiệp loại xuất sắc</h3>
+        <p>
+          Không chỉ vì tấm bằng, mà vì mục tiêu này buộc tôi phải duy trì kỷ luật đều đặn
+          qua từng học phần thay vì học dồn trước kỳ thi.
+        </p>
+      </article>
+
+      <article class="card goal-card reveal">
+        <span class="num">02</span>
+        <div class="card-ico">🗣️</div>
+        <h3>Thành thạo 2 ngoại ngữ</h3>
+        <p>
+          Với Kinh tế quốc tế, ngoại ngữ không phải môn phụ mà là công cụ làm việc.
+          Đây là điều kiện gần như bắt buộc nếu muốn làm logistics xuyên biên giới.
+        </p>
+      </article>
+
+      <article class="card goal-card reveal">
+        <span class="num">03</span>
+        <div class="card-ico">🛠️</div>
+        <h3>Rèn kỹ năng thực dụng</h3>
+        <p>
+          Các kỹ năng phục vụ trực tiếp cho học tập và công việc: tìm — thẩm định thông tin,
+          làm việc nhóm trên nền tảng số, và sử dụng AI đúng cách.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ĐỊNH HƯỚNG -->
+<section class="section section-tint">
+  <div class="wrap">
+    <div class="section-head left reveal" style="max-width:640px">
+      <span class="section-tag">Định hướng phát triển</span>
+      <h2>Con đường tới nghề logistics</h2>
+      <div class="divider"></div>
+    </div>
+
+    <ol class="timeline">
+      <li class="reveal">
+        <h3>Nền tảng chuyên ngành</h3>
+        <p>
+          Học chắc phần lõi của Kinh tế quốc tế: thương mại quốc tế, chuỗi cung ứng,
+          thanh toán và vận tải — bộ khung để hiểu vì sao một lô hàng lại đi theo tuyến này
+          chứ không phải tuyến khác.
+        </p>
+      </li>
+      <li class="reveal">
+        <h3>Năng lực số</h3>
+        <p>
+          Chính là những gì portfolio này ghi lại: quản lý dữ liệu có tổ chức, thẩm định nguồn
+          tin, cộng tác trên nền tảng trực tuyến, và tự động hóa các việc lặp đi lặp lại.
+          Logistics hiện đại chạy trên phần mềm, không chạy trên sổ tay.
+        </p>
+      </li>
+      <li class="reveal">
+        <h3>Ngoại ngữ &amp; trải nghiệm thực tế</h3>
+        <p>
+          Hoàn thiện hai ngoại ngữ và tìm cơ hội thực tập để va chạm với chứng từ,
+          quy trình và đối tác thật — thứ không thể học đủ qua giáo trình.
+        </p>
+      </li>
+      <li class="reveal">
+        <h3>Chuyên viên logistics</h3>
+        <p>
+          Đích đến: làm được việc trong một môi trường chuyên nghiệp, nơi tôi vừa hiểu
+          nghiệp vụ vừa biết dùng công cụ để làm nó nhanh và chính xác hơn.
+        </p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- MỤC TIÊU PORTFOLIO -->
+<section class="section">
+  <div class="wrap narrow">
+    <div class="section-head reveal">
+      <span class="section-tag">Vì sao có trang này</span>
+      <h2>Mục tiêu của Portfolio</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="grid grid-2">
+      <article class="card reveal">
+        <div class="card-ico">✨</div>
+        <h3>Thể hiện kỹ năng số đã học</h3>
+        <p>Biến 7 bài tập rời rạc thành một sản phẩm thống nhất, cho thấy tôi thực sự làm được gì chứ không chỉ nộp bài.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card-ico">🗂️</div>
+        <h3>Lưu trữ &amp; dễ chia sẻ</h3>
+        <p>Một đường link duy nhất thay cho việc gửi từng file PDF — dùng được cả khi ứng tuyển thực tập sau này.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card-ico">🔍</div>
+        <h3>Nhìn lại quá trình</h3>
+        <p>Ghi lại cả những chỗ tôi làm chưa tốt và cách tôi sửa, để lần sau không lặp lại.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card-ico">🎯</div>
+        <h3>Giới thiệu bản thân</h3>
+        <p>Một hồ sơ năng lực số của riêng tôi — thứ tôi có thể tiếp tục bồi đắp sau khi môn học kết thúc.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2>7 bài tập, 1 hành trình</h2>
+      <p>Từ thao tác tệp tin cơ bản đến quy trình tự động hóa chạy thật trên Zapier — mời bạn xem chi tiết từng bài.</p>
+      <a class="btn btn-ghost" href="du-an.html">Xem trang Dự án →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Portfolio</h4>
+        <p>
+          Bài tập dự án cá nhân — học phần <strong>Nhập môn Công nghệ số và Ứng dụng
+          Trí tuệ nhân tạo</strong>, Trường Đại học Kinh tế, ĐHQGHN.
+        </p>
+      </div>
+      <div>
+        <h4>Nội dung</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Giới thiệu</a></li>
+          <li><a href="du-an.html">Dự án</a></li>
+          <li><a href="tong-ket.html">Tổng kết</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sinh viên</h4>
+        <ul class="footer-links">
+          <li>Bùi Linh Giang</li>
+          <li>Kinh tế quốc tế</li>
+          <li>ĐH Kinh tế — ĐHQGHN</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">© 2026 Bùi Linh Giang · Digital Portfolio</div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
 </body>
 </html>
