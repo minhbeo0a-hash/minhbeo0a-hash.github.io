@@ -1049,8 +1049,8 @@
             <div class="footer-col">
                 <h4>Liên hệ học tập</h4>
                 <ul>
-                    <li>Email: minh.nd@vnu.edu.vn</li>
-                    <li>Địa chỉ: Cầu Giấy, Hà Nội</li>
+                    <li>Email: minhbeo0a@gmail.com</li>
+                    <li>Địa chỉ: Vĩnh Thanh, Hà Nội</li>
                 </ul>
             </div>
         </div>
